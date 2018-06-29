@@ -1,5 +1,5 @@
 //
-//  MoviesGridViewController.h
+//  TrailerViewController.h
 //  flixster
 //
 //  Created by Gustavo Coutinho on 6/28/18.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoviesGridViewController : UIViewController <UITextFieldDelegate>
+@interface TrailerViewController : UIViewController
+
+@property (nonatomic, weak) NSString *movieSpecs;
 
 @end

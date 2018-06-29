@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 @end
@@ -30,6 +31,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    // Start the activity indicator
+    [self.activityIndicator startAnimating];
+
+    
     // Do any additional setup after loading the view.
     [self fetchMovies];
     
@@ -42,6 +47,7 @@
     // Nests views into subviews
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    
 }
 
 - (void) fetchMovies {
@@ -52,6 +58,29 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            
+            // Instatiate the UIAlertController
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
+                                                                           message:@"The internet connections seems to be offline"
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            // create an OK action
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [self fetchMovies];
+                                                                 
+                                                             }];
+            
+            // add the OK action to the alert controller
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+                // optional interface
+            }];
+            
+            
+            
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -59,20 +88,25 @@
             // Gets the array of movies & store the movies in a property to use elsewhere
             self.movies = dataDictionary[@"results"];
             
-            // Checks if app gets data from API
-            for (NSDictionary *movie in self.movies) {
-                NSLog(@"%@", movie[@"title"]);
-            }
+//            // Checks if app gets data from API
+//            for (NSDictionary *movie in self.movies) {
+//                NSLog(@"%@", movie[@"title"]);
+//            }
             
             // Reloads your table view data
             [self.tableView reloadData];
             
         }
         [self.refreshControl endRefreshing];
+        
+        // Stop the activity indicator
+        // Hides automatically if "Hides When Stopped" is enabled
+        [self.activityIndicator stopAnimating];
     }];
     [task resume];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -105,10 +139,37 @@
     // NSUR is an object representing the location of a resource that bridges to URL
     NSURL *posterURL = [NSURL URLWithString: fullPosterURLString];
     
-    // Avoids showing the poster from the 'old' movie when the user scrolls down too fast
-    cell.posterView.image = nil;
+    NSURLRequest *request = [NSURLRequest requestWithURL:posterURL];
+
     
-    [cell.posterView setImageWithURL:posterURL];
+    // Avoids showing the poster from the 'old' movie when the user scrolls down too fast
+//    cell.posterView.image = nil;
+    
+    [cell.posterView setImageWithURLRequest:request placeholderImage:nil
+                                    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+                                        
+                                        // imageResponse will be nil if the image is cached
+                                        if (imageResponse) {
+                                            NSLog(@"Image was NOT cached, fade in image");
+                                            cell.posterView.alpha = 0.0;
+                                            cell.posterView.image = image;
+                                            
+                                            //Animate UIImageView back to alpha 1 over 0.3sec
+                                            [UIView animateWithDuration:0.3 animations:^{
+                                                cell.posterView.alpha = 1.0;
+                                            }];
+                                        }
+                                        else {
+                                            NSLog(@"Image was cached so just update the image");
+                                            cell.posterView.image = image;
+                                        }
+                                    }
+                                    failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
+                                        // do something for the failure condition
+                                    }];
+    
+    
+//    [cell.posterView setImageWithURL:posterURL];
     
     // Returns the cell to the table view
     return cell;
