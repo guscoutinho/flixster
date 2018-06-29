@@ -50,6 +50,12 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Deselect the row which was tapped
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void) fetchMovies {
     
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
@@ -147,6 +153,9 @@
     
     [cell.posterView setImageWithURLRequest:request placeholderImage:nil
                                     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+                                        
+                                        
+                                        
                                         
                                         // imageResponse will be nil if the image is cached
                                         if (imageResponse) {

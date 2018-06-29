@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseLabel;
+@property (strong, nonatomic) IBOutlet UIView *tableView;
 
 @end
 
@@ -46,6 +47,8 @@
     [self.titleLabel sizeToFit];
     [self.releaseLabel sizeToFit];
     [self.descriptionLabel sizeToFit];
+    
+
 
     
 }
