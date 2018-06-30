@@ -31,8 +31,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. g
-2. h
+1. APIs -- I thought it was really productive to work with APIs, such as the movie database and youtube. I believe this is the cornerstone of many of our final projects. As such, this is a fantastic topic of discussion.
+2. Network request -- As in with APIs, I believe many of my peers, and I included, will possibly use network requests to gather data for our apps. We as a class would benefit from further discussing network requests.
 
 ## Video Walkthrough
 
@@ -44,7 +44,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+My biggest challenge was ensuring the proper network request for the movie trailers optional feature. 
 
 ## Credits
 
@@ -54,7 +54,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2018] [Gustavo Coutinho]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
