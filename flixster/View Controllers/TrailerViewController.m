@@ -92,40 +92,4 @@
 }
 
 
-
-//#pragma mark - Navigation
-//
-//// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//
-//
-//    UIImage *posterLabel = sender;
-//    NSDictionary *identity = self.movie;
-//    
-//    // Get the new view controller using [segue DetailsViewController].
-//        TraillerViewController *detailsViewController = [segue destinationViewController];
-//    
-//    // Pass the selected object to the new view controller.
-//        TraillerViewController.movie = movie;
-//    
-//    
-//    
-//}
-
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//
-//    UITableView *tappedCell = sender;
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-//    NSDictionary *movie = self.movies[indexPath.row];
-//
-//    // Get the new view controller using [segue DetailsViewController].
-//    DetailsViewController *detailsViewController = [segue destinationViewController];
-//
-//    // Pass the selected object to the new view controller.
-//    detailsViewController.movie = movie;
-//
-//}
-
-
 @end

@@ -94,10 +94,6 @@
             // Gets the array of movies & store the movies in a property to use elsewhere
             self.movies = dataDictionary[@"results"];
             
-//            // Checks if app gets data from API
-//            for (NSDictionary *movie in self.movies) {
-//                NSLog(@"%@", movie[@"title"]);
-//            }
             
             // Reloads your table view data
             [self.tableView reloadData];
@@ -177,9 +173,7 @@
                                         // do something for the failure condition
                                     }];
     
-    
-//    [cell.posterView setImageWithURL:posterURL];
-    
+        
     // Returns the cell to the table view
     return cell;
 }

@@ -22,6 +22,7 @@
 		5449F8F220E560B000C8494D /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5449F8F120E560B000C8494D /* MovieCollectionCell.m */; };
 		5449F8F520E5E8CC00C8494D /* TrailerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5449F8F420E5E8CC00C8494D /* TrailerViewController.m */; };
 		5449F8F720E5ED5000C8494D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5449F8F620E5ED5000C8494D /* WebKit.framework */; };
+		5449F8FA20E7000000C8494D /* MarvelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5449F8F920E7000000C8494D /* MarvelViewController.m */; };
 		F2E2BED54436A6DBC961E2F3 /* libPods-flixsterUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055FC0B523FB9054C007F02E /* libPods-flixsterUITests.a */; };
 		F50377F2DD57B24846C42232 /* libPods-flixster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF5D5F9F5E289DADD47AD9F /* libPods-flixster.a */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,8 @@
 		5449F8F320E5E8CC00C8494D /* TrailerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrailerViewController.h; sourceTree = "<group>"; };
 		5449F8F420E5E8CC00C8494D /* TrailerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrailerViewController.m; sourceTree = "<group>"; };
 		5449F8F620E5ED5000C8494D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		5449F8F820E7000000C8494D /* MarvelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarvelViewController.h; sourceTree = "<group>"; };
+		5449F8F920E7000000C8494D /* MarvelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarvelViewController.m; sourceTree = "<group>"; };
 		68975812062A88678579B180 /* Pods-flixsterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flixsterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flixsterTests/Pods-flixsterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5FEB5871B0C59826F64514F /* Pods-flixsterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flixsterUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-flixsterUITests/Pods-flixsterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C7E96A3358C7FF8E4A7751C7 /* Pods-flixsterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flixsterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-flixsterTests/Pods-flixsterTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 				5449F8EE20E55CBC00C8494D /* MoviesGridViewController.m */,
 				5449F8F320E5E8CC00C8494D /* TrailerViewController.h */,
 				5449F8F420E5E8CC00C8494D /* TrailerViewController.m */,
+				5449F8F820E7000000C8494D /* MarvelViewController.h */,
+				5449F8F920E7000000C8494D /* MarvelViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5449F8FA20E7000000C8494D /* MarvelViewController.m in Sources */,
 				5449F8BF20E409C900C8494D /* main.m in Sources */,
 				5449F8EC20E4C16500C8494D /* DetailsViewController.m in Sources */,
 				5449F8B120E409C700C8494D /* AppDelegate.m in Sources */,

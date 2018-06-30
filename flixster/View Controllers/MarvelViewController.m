@@ -1,26 +1,27 @@
 //
-//  MoviesGridViewController.m
+//  MarvelViewController.m
 //  flixster
 //
-//  Created by Gustavo Coutinho on 6/28/18.
+//  Created by Gustavo Coutinho on 6/29/18.
 //  Copyright © 2018 Gustavo Coutinho. All rights reserved.
 //
 
-#import "MoviesGridViewController.h"
+#import "MarvelViewController.h"
 #import "MovieCollectionCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface MarvelViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *allMovies;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *filteredData;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 
 @end
 
-@implementation MoviesGridViewController
+@implementation MarvelViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +34,7 @@
     
     // Layout; Cast to the right type/layout
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-
+    
     
     CGFloat posterPerLine = 2;
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (posterPerLine - 1)) / posterPerLine;
@@ -49,7 +50,7 @@
 
 - (void) fetchMovies {
     
-    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/8587/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1"];
+    NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/383498/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -62,7 +63,7 @@
             // Gets the array of movies & store the movies in a property to use elsewhere
             self.allMovies = dataDictionary[@"results"];
             self.filteredData = self.allMovies;
-
+            
             
             [self.collectionView reloadData];
             
@@ -81,7 +82,9 @@
             return [evaluatedObject[@"title"] containsString:searchText];
         }];
         self.filteredData = [self.allMovies filteredArrayUsingPredicate:predicate];
-            
+        
+        NSLog(@"%@", self.filteredData);
+        
         
     }
     else {
@@ -117,7 +120,7 @@
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.filteredData[indexPath.item];
-
+    
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
@@ -153,7 +156,6 @@
                                     failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
                                         // do something for the failure condition
                                     }];
-    
     
     return cell;
 }
